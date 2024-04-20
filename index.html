@@ -3,8 +3,9 @@
 
 <head>
     <title>安全页面 放心访问</title>
-    <script id="wxjubao-js" src="/jubao/wxjubao.js"> </script>
+<!--     <script id="wxjubao-js" src="/jubao/wxjubao.js"> </script> -->
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<!--     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">   -->
 </head>
 <style>
     * {
@@ -53,15 +54,21 @@
 </style>
 
 <body style="text-align: center;">
-    <div id="Zl"><iframe id="preview" src="http://d.xiaomisu7.cloud/ujNSZw" frameborder="0" width="100%" height="910px"
+    <div id="Zl"><iframe id="preview" frameborder="0" width="100%" height="910px"
             scrolling='auto'></iframe></div>
     <script>
-        $("#Zl").html("<iframe width="100%" id="preview" src="'http://d.xiaomisu7.cloud/ujNSZw'" frameborder="0"></iframe>");
-        $(document).ready(function () {
-            function fix_height() { $("#preview").attr("height", (($(window).height()) - 5) + "px"); }
-            $(window).resize(function () { fix_height(); }).resize();
-            $("#preview").contentWindow.focus();
-        });
+
+        var url = document.location.toString();
+        var urlParmStr = url.slice(url.indexOf('=') + 1);
+
+        document.getElementById('preview').src = urlParmStr;
+       
+        // $("#Zl").html("<iframe width="100%" id="preview" src="urlParmStr" frameborder="0"></iframe>");
+        // $(document).ready(function () {
+        //     function fix_height() { $("#preview").attr("height", (($(window).height()) - 5) + "px"); }
+        //     $(window).resize(function () { fix_height(); }).resize();
+        //     $("#preview").contentWindow.focus();
+        // });
     </script>
     </br></br></br>
 
